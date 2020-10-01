@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
+import { resolve } from 'path';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
@@ -16,14 +17,18 @@ const createWindow = (): void => {
     width: 1280,
     minWidth: 900,
     minHeight: 600,
+    icon: resolve('assets', 'logo.png'),
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       zoomFactor: 1.2,
     },
+    frame: true,
+    autoHideMenuBar: true,
+    titleBarStyle: 'hiddenInset', // MacOS polished window
   });
 
-  mainWindow.removeMenu();
+  // mainWindow.removeMenu();
 
   // Open the DevTools.
   if (isDev) {

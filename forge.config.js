@@ -2,9 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const ffmpegPath = require('ffmpeg-static');
 
+const logoPath = path.resolve(__dirname, 'assets', 'logo');
+const logoPngPath = path.resolve(__dirname, 'assets', 'logo.png');
+const logoIconPath = path.resolve(__dirname, 'assets', 'logo.ico');
+const logoIcnsPath = path.resolve(__dirname, 'assets', 'logo.icns');
+
 module.exports = {
   packagerConfig: {
-    icon: path.resolve(__dirname, 'assets', 'logo'),
+    win32metadata:{
+      ProductName: 'Youtube DL Electron',
+      CompanyName: 'Brunight'
+    },
+    icon: logoPath,
     afterExtract: [
       (extractPath, electronVersion, platform, arch, done) => {
         fs.copyFileSync(
@@ -20,6 +29,7 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {
         name: 'youtube_dl_electron',
+        setupIcon: logoIconPath,
       }
     },
     {
@@ -30,11 +40,20 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {}
+      config: {
+        icon: logoPngPath,
+      }
     },
     {
       name: '@electron-forge/maker-rpm',
       config: {}
+    },
+    {
+      name: '@electron-forge/maker-dmg',
+      config: {
+        icon: logoIcnsPath,
+        format: 'ULFO'
+      }
     }
   ],
   plugins: [
