@@ -1,6 +1,6 @@
 {
   "name": "youtube-dl-electron",
-  "productName": "Youtube DL Electron",
+  "productName": "youtube-dl-electron",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
