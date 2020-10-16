@@ -221,70 +221,66 @@ const Info: React.FC = () => {
 
   return (
     <>
-      {loading ? (
-        <>
-          <h1>Carregando...</h1>
+      <Container>
+        <Content>
           <StyledLink to="/">
             <FiArrowLeft />
             Back
           </StyledLink>
-        </>
-      ) : (
-        <Container>
-          <Content>
-            <Cropper
-              imgUrl={cover}
-              onInitialized={instance => {
-                setCropper(instance);
-              }}
-              style={{ width: '100%' }}
-            />
-            <TimeSlider
-              onChange={e => handleTimeSliderChange(e)}
-              timeMs={durationMs}
-            />
-            <Form ref={formRef} onSubmit={handleSubmit}>
-              <Input
-                name="title"
-                type="text"
-                placeholder="Title"
-                icon={FiMusic}
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            <>
+              <Cropper
+                imgUrl={cover}
+                onInitialized={instance => {
+                  setCropper(instance);
+                }}
+                style={{ width: '100%' }}
               />
-              <BsArrowUpDown
-                size={32}
-                style={{ marginTop: '16px', marginBottom: '16px' }}
-                onClick={handleSwipe}
-                cursor="pointer"
+              <TimeSlider
+                onChange={e => handleTimeSliderChange(e)}
+                timeMs={durationMs}
               />
-              <Input
-                name="artist"
-                type="text"
-                placeholder="Artist"
-                icon={FiMic}
-              />
-              <Input
-                name="album"
-                type="text"
-                placeholder="Album"
-                icon={FiDisc}
-              />
-              <Input
-                name="comment"
-                type="text"
-                placeholder="Comment"
-                icon={FiMessageSquare}
-              />
-              <Button type="submit">
-                {params.source === 'youtube' ? 'Download' : 'Save'}
-              </Button>
-            </Form>
-            <StyledLink to="/">
-              <FiArrowLeft />
-              Back
-            </StyledLink>
-          </Content>
-        </Container>
-      )}
+              <Form ref={formRef} onSubmit={handleSubmit}>
+                <Input
+                  name="title"
+                  type="text"
+                  placeholder="Title"
+                  icon={FiMusic}
+                />
+                <BsArrowUpDown
+                  size={32}
+                  style={{ marginTop: '16px', marginBottom: '16px' }}
+                  onClick={handleSwipe}
+                  cursor="pointer"
+                />
+                <Input
+                  name="artist"
+                  type="text"
+                  placeholder="Artist"
+                  icon={FiMic}
+                />
+                <Input
+                  name="album"
+                  type="text"
+                  placeholder="Album"
+                  icon={FiDisc}
+                />
+                <Input
+                  name="comment"
+                  type="text"
+                  placeholder="Comment"
+                  icon={FiMessageSquare}
+                />
+                <Button type="submit">
+                  {params.source === 'youtube' ? 'Download' : 'Save'}
+                </Button>
+              </Form>
+            </>
+          )}
+        </Content>
+      </Container>
     </>
   );
 };

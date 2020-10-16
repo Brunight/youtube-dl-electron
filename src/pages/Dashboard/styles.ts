@@ -13,7 +13,7 @@ export const Content = styled.div`
 
   place-content: center;
 
-  margin-top: 16px;
+  margin-top: 24px;
   width: 100%;
   max-width: 700px;
 

@@ -36,9 +36,10 @@ export const Content = styled.div`
 export const StyledLink = styled(Link)`
   color: #f4ede8;
   display: block;
-  margin-top: 24px;
   text-decoration: none;
   transition: color 0.2s;
+  margin-bottom: 24px;
+  align-self: flex-start;
 
   display: flex;
   align-items: center;

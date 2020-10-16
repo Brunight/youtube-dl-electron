@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { remote } from 'electron';
-import { Link } from 'react-router-dom';
 import fs from 'fs';
 import CropperJS from 'cropperjs';
 
@@ -10,7 +9,7 @@ import Button from '../../components/Button';
 
 import { useToast } from '../../hooks/toast';
 
-import { Container } from './styles';
+import { Container, Content, StyledLink } from './styles';
 
 const CropperPage: React.FC = () => {
   const [cropper, setCropper] = useState<CropperJS>();
@@ -63,35 +62,41 @@ const CropperPage: React.FC = () => {
 
   return (
     <Container>
-      <Cropper
-        onInitialized={instance => {
-          setCropper(instance);
-        }}
-        style={{ width: '100%' }}
-        ready={() => setIsLoaded(true)}
-      />
-      {isLoaded && (
-        <Button type="button" onClick={handleCrop} style={{ marginBottom: 16 }}>
-          Crop
-        </Button>
-      )}
-
-      {canvas !== '' && (
-        <>
-          <img src={canvas} alt="Canvas" style={{ width: '100%' }} />
+      <Content>
+        <StyledLink to="/">
+          <FiArrowLeft />
+          Back
+        </StyledLink>
+        <Cropper
+          onInitialized={instance => {
+            setCropper(instance);
+          }}
+          style={{ width: '100%' }}
+          ready={() => setIsLoaded(true)}
+        />
+        {isLoaded && (
           <Button
             type="button"
-            onClick={handleSave}
-            style={{ marginBottom: 16 }}
+            onClick={handleCrop}
+            style={{ marginBottom: 16, width: '70%' }}
           >
-            Save
+            Crop
           </Button>
-        </>
-      )}
-      <Link to="/">
-        <FiArrowLeft />
-        Back
-      </Link>
+        )}
+
+        {canvas !== '' && (
+          <>
+            <img src={canvas} alt="Canvas" style={{ width: '100%' }} />
+            <Button
+              type="button"
+              onClick={handleSave}
+              style={{ marginBottom: 16 }}
+            >
+              Save
+            </Button>
+          </>
+        )}
+      </Content>
     </Container>
   );
 };
