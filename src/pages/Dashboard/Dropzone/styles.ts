@@ -14,11 +14,11 @@ export const DropzoneContainer = styled.div<DropzoneProps>`
   cursor: pointer;
   transition: background-color 0.1s;
 
-  ${props =>
-    props.isDragging &&
-    css`
-      border-color: #ff79c6;
-    `}
+    ${props =>
+      props.isDragging &&
+      css`
+        border-color: #ff79c6;
+      `}
 
   &:hover {
     background: ${lighten(0.2, '#191622')};

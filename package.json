@@ -78,7 +78,7 @@
     "react-spring": "^8.0.27",
     "styled-components": "^5.2.0",
     "uuidv4": "^6.2.3",
-    "ytdl-core": "^3.3.0"
+    "ytdl-core": "4.1.1"
   },
   "config": {
     "forge": "./forge.config.js"
